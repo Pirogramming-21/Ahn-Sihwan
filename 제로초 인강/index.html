@@ -218,15 +218,25 @@
                 #search > form:hover{
                     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12);
                 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 9ea3533 (2-3강)
                 #search-svg{
                     display: inline-block;
                     width: 67px;
                     height: 100%;
                     padding: 17px 16px 17px 27px;
+                    position: relative;
+                }
+                #search-svg::after{
+                    display: none;
+                }
+                #search > form:focus-within #search-svg::after{
+                    content: '';
+                    position: absolute;
+                    width: 1px;
+                    height: 20px;
+                    background-color: #e4e4e4;
+                    top: 20px;
+                    right: 4px;
+                    display: inline-block;
                 }
                 #search-svg svg{
                     width: 24px;
@@ -237,11 +247,14 @@
                     width: 480px;
                     height: 58px;
                     padding: 17px 0px;
-                    font-size: 22px;
+                    font-size: 21px;
                     line-height: 24px;
-                    font-weight: bold;
+                    /* font-weight: bold; */
                     border: none;
                     outline: none;
+                }
+                #search-input::placeholder{
+                    color: white
                 }
                 #search-input:focus::placeholder {
                     color: #e4e4e4
