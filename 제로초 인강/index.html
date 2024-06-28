@@ -75,7 +75,7 @@
         *{
             box-sizing: border-box;
         }
-        html, body{
+        html, body, form{
             margin: 0;
             padding: 0;
         }
@@ -90,7 +90,8 @@
         }
         #header{
             text-align: left;
-            position: relative; 
+            position: relative;
+            height: 52px;
         }
         #header-hamburger, #header-naverpay, #header-talk, #header-notice, #header-shopping{
             position: absolute;
@@ -155,6 +156,8 @@
         #header-shopping > div{
             background-position: -326px -99px;
         }
+        
+
         #main {
             height: 2000px;
         }
@@ -202,9 +205,45 @@
                     <span class="blind">장바구니</span>
                     <!--::after-->
                 </button>
-            
             </div>
-            <div id="search"></div>
+            <style>
+                #search > form {
+                    display: inline-block;
+                    width: 708px;
+                    height: 60px;
+                    border: 1px solid #03c75a;
+                    border-radius: 33px;
+                    text-align: left;
+                }
+                #search > form > input {
+                    width: 480px;
+                    height: 100%;
+                    padding: 17px 0;
+                    border: none;
+                    outline: none;        
+                }
+                #search > form a {
+                    display: inline-block;
+                    width: 67px;
+                    height: 58px;
+                    padding: 17px;
+                    margin-right: 12px;                  
+                }
+                #search > form svg {
+                    width: 24px;
+                    height: 24px;
+                }
+            </style>
+            <div id="search">
+                <form action="">
+                    <a href="#">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+                    </a>
+                    <label for="search-input" class="blind">검색어 입력</label>
+                    <input id="search-input" type="text" />
+                    <button class="blind">검색</button>
+                </form>
+            </div>
             <div id="nav"></div>
             <div id="main"></div>
         </div>
