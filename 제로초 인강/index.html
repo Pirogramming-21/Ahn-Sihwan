@@ -86,7 +86,7 @@
         #wrap-center{
             width: 1280px;
             display: inline-block;
-            background-color: yellow;
+            background-color: white;
         }
         #header{
             text-align: left;
@@ -208,12 +208,15 @@
             </div>
             <style>
                 #search > form {
-                    display: inline-block;
+                    display: inline-flex;
                     width: 708px;
                     height: 60px;
                     border: 1px solid #03c75a;
                     border-radius: 33px;
                     text-align: left;
+                }
+                #search > form:hover{
+                    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .12);
                 }
                 #search-svg{
                     display: inline-block;
@@ -226,18 +229,32 @@
                     height: 24px;
                     fill: #03c75a;
                 }
-                #search-input{
+                #search > form > input{
                     width: 480px;
                     height: 58px;
                     padding: 17px 0px;
-                    font-size: 2rem;
+                    font-size: 22px;
                     line-height: 24px;
                     font-weight: bold;
                     border: none;
                     outline: none;
                 }
+                #search-input::placeholder {
+                    color: white;
+                }
+                #search-input:focus::placeholder {
+                    color: #e4e4e4
+                }
                 #search-right{
-                    display: inline-block
+                    display: flex;
+                    flex: 1;
+                    align-items: stretch;
+                    justify-content: flex-end; 
+                }
+                #search-keyboard, #search-recent, #search-button {
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
                 }
                 #search-keyboard::before{
                     content: "";
@@ -248,6 +265,9 @@
                     background-repeat: no-repeat;
                     width: 24px;
                     height: 14px;
+                }
+                #search-keyboard:hover::before {
+                    filter: brightness(0.7);
                 }
                 #search-recent::before{
                     content: "";
@@ -261,7 +281,7 @@
                 }
                 #search-button{
                     display: inline-block;
-                    width: 67px;
+                    width: 62px;
                     height: 100%;
                     padding: 17px 27px 16px 10px;
                 }
@@ -277,7 +297,7 @@
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"></path></svg>
                     </a>
                     <label for="search-input" class="blind">검색어 입력</label>
-                    <input id="search-input" type="text" placeholder="검색어를 입력하세요." />
+                    <input id="search-input" type="text" placeholder="검색어를 입력해 주세요." />
                     <div id="search-right">
                         <button href="#" id="search-keyboard">
                             <span class="blind"> 입력도구 </span>
