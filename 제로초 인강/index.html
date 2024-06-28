@@ -72,6 +72,9 @@
             --color_shop: #9858f5;
             --color_shop_rgb: 152,88,245;
         }
+        *{
+            box-sizing: border-box;
+        }
         html, body{
             margin: 0;
             padding: 0;
@@ -89,40 +92,68 @@
             text-align: left;
             position: relative; 
         }
-        #header-hamburger{
+        #header-hamburger, #header-naverpay, #header-talk, #header-notice, #header-shopping{
             position: absolute;
             top: 5px;
-            left: -12px;
-            padding: 10px;
+            padding: 8px;
+            width: 48px;
+            height: 48px;
             display: inline-block;  
             background: none;
             border: none;
             cursor: pointer;
         }
-        #header-hamburger:hover::before{
+        #header-hamburger:hover::before, #header-naverpay:hover::before, #header-talk:hover::before, #header-notice:hover::before, #header-shopping:hover::before{
             content: '';
             position: absolute;
-            left: 1px;
-            top:1px;
+            left: 0.5px;
+            top: 1px;
             z-index: 0;
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             background-color: var(--color_option_bg);
             border-radius: 50%;
         }
-        #header-hamburger:hover > div{
+        #header-hamburger:hover > div, #header-naverpay:hover > div, #header-talk:hover > div, #header-notice:hover > div, #header-shopping:hover > div{
             position: relative;
-            left:-2px;
-            top:-3px;
         }
-        #header-hamburger > div{
+        #header-hamburger > div, #header-naverpay > div, #header-talk > div, #header-notice > div, #header-shopping > div{
             background-image: url(./sp_main.png);
             width: 32px;
             height: 32px;
             z-index: 1;
             background-repeat: no-repeat;
-            background-size: 442px 434px;
-            background-position: -326px -161px;
+            background-size: 458px 444px;
+        }
+        #header-hamburger{
+            left: -12px;
+        }
+        #header-hamburger > div {
+            background-position: -285px -214px;
+        }
+        #header-talk{
+            right: 94px;
+        }
+        #header-talk > div{
+            background-position: -326px -165px;
+        }
+        #header-naverpay{
+            left: 41px;
+        }
+        #header-naverpay > div{
+            background-position: -326px -33px;
+        }
+        #header-notice{
+            right: 42px;
+        }
+        #header-notice > div{
+            background-position: -246px -229px;
+        }
+        #header-shopping{
+            right: -10px;
+        }
+        #header-shopping > div{
+            background-position: -326px -99px;
         }
         #main {
             height: 2000px;
@@ -145,6 +176,30 @@
                     <!--::before-->
                     <div></div>
                     <span class="blind">확장 영역</span>
+                    <!--::after-->
+                </button>
+                <button id="header-naverpay">
+                    <!--::before-->
+                    <div></div>
+                    <span class="blind">네이버페이</span>
+                    <!--::after-->
+                </button>
+                <button id="header-talk">
+                    <!--::before-->
+                    <div></div>
+                    <span class="blind">톡</span>
+                    <!--::after-->
+                </button>
+                <button id="header-notice">
+                    <!--::before-->
+                    <div></div>
+                    <span class="blind">알림</span>
+                    <!--::after-->
+                </button>
+                <button id="header-shopping">
+                    <!--::before-->
+                    <div></div>
+                    <span class="blind">장바구니</span>
                     <!--::after-->
                 </button>
             
