@@ -99,3 +99,7 @@ body {
   font-size: var(--font-size);
   margin-left: var(--base-space);
 }
+
+.invisible {
+  display: none;
+}
