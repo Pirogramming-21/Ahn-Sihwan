@@ -15,9 +15,11 @@ function initializeGame() {
     gameResultImg.src = '';
     submitButton.disabled = false;
 }
-
+// 게임 초기화
 initializeGame();
+console.log(answer)
 
+// 3개 숫자 생성
 function generateRandomNumbers() {
     let numbers = [];
     while (numbers.length < 3) {
@@ -43,6 +45,7 @@ function check_numbers() {
     let result = calculateResult(guess);
     displayResult(guess, result);
     checkGameOver(result);
+    resultDisplay.scrollTop = resultDisplay.scrollHeight;
 }
 
 // 숫자야구 계산
