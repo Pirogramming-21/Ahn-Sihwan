@@ -6,6 +6,7 @@
 
 :root{
     --main-color: rgb(191, 198, 191);
+    --background-color: rgb(250, 250, 250);
     --button-color: rgb(232, 232, 232);
 }
 
@@ -20,7 +21,7 @@
     margin-top: 10px;
 }
 #stopwatch_wrap{
-    width: 300px;
+    width: 325px;
     height: 150px;
     background-color: var(--main-color);
     display: flex;
@@ -30,13 +31,13 @@
     flex-direction: column;
     padding: 15px 0;
     border-radius: 30px;
-    box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.3);
 }
 .stopwatch_display{
     display:flex;
     justify-content: center;
     align-items: flex-end;
-    background-color: white;
+    background-color: var(--background-color);
     width: 85%;
     height: 45%;
     border-radius: 15px;
@@ -60,6 +61,9 @@
     border: 0px;
     box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.3);
 }
+.button:hover {
+    cursor: pointer;
+}
 
 #record {
     display: flex;
@@ -67,11 +71,11 @@
     align-items: center;
     text-align: center;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 30px;
 
 }
 #record-wrap{
-    width: 350px;
+    width: 365px;
     font-size: 18px;
     font-weight: 600;
     display: flex;
@@ -84,7 +88,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding: 5px;
+    padding: 6px;
     background-color: var(--main-color);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -92,6 +96,19 @@
 .record-top div{
     display: flex;
     align-items: center;
+}
+.record-top .deleteBtn {
+    background-image: url('img/trash-bin.png');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    border: 0px;
+    margin: 0 10px;
+    transition: .2s;
+}
+.record-top .deleteBtn:hover {
+    cursor: pointer;
+    filter: invert(13%) sepia(94%) saturate(6442%) hue-rotate(9deg)
 }
 .record-bottom{ 
     display: flex;
@@ -106,6 +123,10 @@
     width: 20px;
     border: 0px;
     margin: 0 10px;
+    transition: .2s;
+}
+.record-btn:hover {
+    cursor: pointer;
 }
 .record-log{
     width: 100%;
@@ -115,12 +136,15 @@
 }
 .record-log p {
    margin-left: 31%;
+   display: flex;
+   align-items: center;
+   font-size: 21px;
 }
 .record-check {
     background-image: url('img/checkbox.png');
     background-size: cover;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     border: 0px;
     margin: 0 10px;
 }
