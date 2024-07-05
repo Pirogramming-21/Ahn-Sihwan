@@ -1,3 +1,11 @@
 num = 0
 
-call_count = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능) :")
+while True:
+    try:
+        call_count = int(input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능) : "))
+        if call_count in [1, 2, 3]:
+            break
+        else:
+            print("1, 2, 3 중 하나를 입력하세요")
+    except ValueError:
+        print("정수를 입력하세요")
