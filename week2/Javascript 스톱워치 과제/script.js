@@ -2,9 +2,10 @@ const timer = document.querySelector('#time');
 let currentTime;
 
 function startTimer() {
+    clearInterval(currentTime);
     let second = 0;
     let millisecond = 0;
-    let currentTime = setInterval(function() {
+    currentTime = setInterval(function() {
         millisecond+= 10;
         if (millisecond >= 1000) { // 밀리초가 1000에 도달하면
             second++; // 초 증가
@@ -14,15 +15,29 @@ function startTimer() {
             console.log('1분 초과!')
             second = 0; // 초를 다시 0으로
         }
-    let millisec_display = Math.floor(millisecond / 10); // 디스플레이용 - 2자리수 밀리초
-    let second_display = second.toString().padStart(2, '0'); // 디스플레이용 - 2자리수 초
+    
+    // 결과물 화면에 보여주도록 다듬기
+    let millisec_display = Math.floor(millisecond / 10).toString().padStart(2, '0');
+    let second_display = second.toString().padStart(2, '0');
     timer.innerText = (`${second_display}:${millisec_display}`);
-    }, 10); // 매 10밀리초마다 함수 실행
+    }, 10); // 10밀리초마다 함수 실행
 }
 
+function stopTimer() {
+    clearInterval(currentTime);
+}
 
-const start = document.querySelector('.start');
-const stop = document.querySelector('.stop');
-const reset = document.querySelector('.reset');
+function resetTimer() {
+    clearInterval(currentTime);
+    second = 0;
+    millisecond = 0;
+    timer.innerText = "00:00";
+}
 
-start.addEventListener('click', startTimer);
+const startBtn = document.querySelector('.start');
+const stopBtn = document.querySelector('.stop');
+const resetBtn = document.querySelector('.reset');
+
+startBtn.addEventListener('click', startTimer);
+stopBtn.addEventListener('click', stopTimer);
+resetBtn.addEventListener('click', resetTimer);
