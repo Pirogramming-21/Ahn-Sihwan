@@ -46,7 +46,6 @@ stopBtn.addEventListener('click', () => {
     
     const recordCheckBtn = document.createElement('button');
     recordCheckBtn.className = 'record-check record-btn';
-    recordCheckBtn.innerText = 'O'; // 나중에 체크박스로 바꾸기
     
     const recordTime = document.createElement('p');
     recordTime.className = 'record-time';
@@ -60,6 +59,18 @@ stopBtn.addEventListener('click', () => {
     recordBottom.appendChild(recordLog); // 기록 추가
     recordBottom.scrollTop = recordBottom.scrollHeight;
     
+    // 버튼 토글기능 추가
+    recordCheckBtn.addEventListener('click', () => {
+        recordCheckBtn.classList.toggle('checked');
+        recordLog.classList.toggle('checked');
+        console.log(recordCheckBtn.classList);
+    });
 });
 
 resetBtn.addEventListener('click', resetTimer);
+
+const removeRecordBtn = document.querySelector('.deleteBtn');
+removeRecordBtn.addEventListener('click', () => {
+    const checkedLogs = document.querySelectorAll('.record-log.checked');
+    checkedLogs.forEach(log => log.remove());
+});
