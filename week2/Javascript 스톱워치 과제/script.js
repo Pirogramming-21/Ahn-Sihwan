@@ -32,6 +32,20 @@ function resetTimer() {
     timer.innerText = "00:00";
 }
 
+const recordCheckBtn = document.querySelector('.record-check');
+const removeRecordBtn = document.querySelector('.deleteBtn');
+const checkAllBtn = document.querySelector('.checkAll');
+
+function updateCheckAllBtn() {
+    const recordLogAll = document.querySelectorAll('.record-log');
+    const checkedLogAll = document.querySelectorAll('.record-log.checked');
+    if (checkedLogAll.length === recordLogAll.length && recordLogAll.length > 0) {
+        checkAllBtn.classList.add('checked');
+    } else {
+        checkAllBtn.classList.remove('checked');
+    }
+}
+
 const startBtn = document.querySelector('.start');
 const stopBtn = document.querySelector('.stop');
 const resetBtn = document.querySelector('.reset');
@@ -63,14 +77,37 @@ stopBtn.addEventListener('click', () => {
     recordCheckBtn.addEventListener('click', () => {
         recordCheckBtn.classList.toggle('checked');
         recordLog.classList.toggle('checked');
-        console.log(recordCheckBtn.classList);
+
+        updateCheckAllBtn();
     });
+
+    updateCheckAllBtn();
 });
 
 resetBtn.addEventListener('click', resetTimer);
 
-const removeRecordBtn = document.querySelector('.deleteBtn');
 removeRecordBtn.addEventListener('click', () => {
-    const checkedLogs = document.querySelectorAll('.record-log.checked');
-    checkedLogs.forEach(log => log.remove());
+    const checkedLogAll = document.querySelectorAll('.record-log.checked');
+    checkedLogAll.forEach(log => log.remove());
+    recordCheckBtn.classList.remove('checked');
+    updateCheckAllBtn();
 });
+
+checkAllBtn.addEventListener('click', () => {
+    checkAllBtn.classList.toggle('checked');
+    const isChecked = checkAllBtn.classList.contains('checked');
+    const recordLogAll = document.querySelectorAll('.record-log');
+
+    recordLogAll.forEach(log => {
+        const recordCheck = log.querySelector('.record-check');
+        if (isChecked) {
+            log.classList.add('checked');
+            recordCheck.classList.add('checked');
+        } else {
+            log.classList.remove('checked');
+            recordCheck.classList.remove('checked');
+        }
+    })
+    updateCheckAllBtn();
+});
+
