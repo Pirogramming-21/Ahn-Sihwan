@@ -1,10 +1,10 @@
 const timer = document.querySelector('#time');
 let currentTime;
+let second = 0;
+let millisecond = 0;
 
 function startTimer() {
     clearInterval(currentTime);
-    let second = 0;
-    let millisecond = 0;
     currentTime = setInterval(function() {
         millisecond+= 10;
         if (millisecond >= 1000) { // 밀리초가 1000에 도달하면
@@ -22,11 +22,9 @@ function startTimer() {
     timer.innerText = (`${second_display}:${millisec_display}`);
     }, 10); // 10밀리초마다 함수 실행
 }
-
 function stopTimer() {
     clearInterval(currentTime);
 }
-
 function resetTimer() {
     clearInterval(currentTime);
     second = 0;
@@ -41,3 +39,4 @@ const resetBtn = document.querySelector('.reset');
 startBtn.addEventListener('click', startTimer);
 stopBtn.addEventListener('click', stopTimer);
 resetBtn.addEventListener('click', resetTimer);
+
