@@ -19,6 +19,10 @@ while num < 31:
     num += call_count
 
     if num >= 31:
+        if player == 'playerA':
+            print("playerB	win!")
+        else:
+            print("playerA	win!")
         break
     
     if player == 'playerA':
