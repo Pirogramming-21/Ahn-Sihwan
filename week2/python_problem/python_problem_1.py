@@ -1,8 +1,5 @@
-num = 0
-player = 'playerA'
-
-while num < 31:
-    print(player)
+def brGame():
+    global num, player
     while True:
         try:
             call_count = int(input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능) : "))
@@ -18,14 +15,17 @@ while num < 31:
 
     num += call_count
 
-    if num >= 31:
-        if player == 'playerA':
-            print("playerB	win!")
-        else:
-            print("playerA	win!")
-        break
-    
     if player == 'playerA':
         player = 'playerB'
     else:
         player = 'playerA'
+    
+    if num >= 31:
+        print(f"{player} win!")
+        return True
+    
+num = 0
+player = 'playerA'
+while True:
+    if brGame():
+        break
