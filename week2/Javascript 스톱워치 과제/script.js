@@ -37,6 +37,29 @@ const stopBtn = document.querySelector('.stop');
 const resetBtn = document.querySelector('.reset');
 
 startBtn.addEventListener('click', startTimer);
-stopBtn.addEventListener('click', stopTimer);
-resetBtn.addEventListener('click', resetTimer);
 
+stopBtn.addEventListener('click', () => {
+    stopTimer(); // 시간 스탑
+
+    const recordLog = document.createElement('div');
+    recordLog.className = 'record-log';
+    
+    const recordCheckBtn = document.createElement('button');
+    recordCheckBtn.className = 'record-check record-btn';
+    recordCheckBtn.innerText = 'O'; // 나중에 체크박스로 바꾸기
+    
+    const recordTime = document.createElement('p');
+    recordTime.className = 'record-time';
+
+    const stoppedTime = timer.innerText;
+    recordTime.innerText = stoppedTime;
+    
+    recordLog.append(recordCheckBtn, recordTime);
+    
+    const recordBottom = document.querySelector('.record-bottom');
+    recordBottom.appendChild(recordLog); // 기록 추가
+    recordBottom.scrollTop = recordBottom.scrollHeight;
+    
+});
+
+resetBtn.addEventListener('click', resetTimer);

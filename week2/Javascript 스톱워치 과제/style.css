@@ -2,7 +2,11 @@
     text-align: center;
     margin: 0px;
     padding: 0px;
-    border-radius: 15px;
+}
+
+:root{
+    --main-color: rgb(191, 198, 191);
+    --button-color: rgb(232, 232, 232);
 }
 
 #title {
@@ -16,25 +20,26 @@
     margin-top: 10px;
 }
 #stopwatch_wrap{
-    width: 350px;
+    width: 300px;
     height: 150px;
-    background-color: lightseagreen;
+    background-color: var(--main-color);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-direction: column;
-    padding: 10px 0;
+    padding: 15px 0;
+    border-radius: 30px;
     box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.3);
 }
-
-.time_count{
+.stopwatch_display{
     display:flex;
     justify-content: center;
     align-items: flex-end;
     background-color: white;
     width: 85%;
     height: 45%;
+    border-radius: 15px;
 }
 #time{
     font-size: 3em;
@@ -48,13 +53,12 @@
     justify-content: space-around;
 }
 .button {
-    background-color: lightgray;
+    background-color: var(--button-color);
     width: 50px;
     height: 50px;
     border-radius: 20px;
     border: 0px;
     box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.3);
-
 }
 
 #record {
@@ -64,23 +68,47 @@
     text-align: center;
     flex-direction: column;
     margin-top: 20px;
-}
 
+}
+#record-wrap{
+    width: 350px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .record-top {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 400px;
+    width: 100%;
     padding: 5px;
-    background-color: lightseagreen;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    background-color: var(--main-color);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
-
-.record_btn {
+.record-bottom{ 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 40vh;
+    overflow-y: scroll;
+}
+.record-btn {
     background-color: transparent;
     width: 20px;
     border: 0px;
     margin: 0 10px;
-
+}
+.record-log{
+    width: 100%;
+    padding-top: 12px;
+    display: flex;
+    justify-content: flex-start;
+}
+.record-log p {
+   margin-left: 31%;
 }
