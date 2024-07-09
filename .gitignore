@@ -11,7 +11,7 @@ db.sqlite3
 db.sqlite3-journal
 media
 
-Assignments/week3/djangogirls/.gitignore
+./week3/djangogirls/.gitignore
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
