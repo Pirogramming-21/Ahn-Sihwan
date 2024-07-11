@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>시환의 영화 리뷰</title>
+</head>
+<body>
+    <h1>My Movie Reviews</h1>
+    <a>리뷰 작성하기(버튼)</a>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                {% if review.poster %}
+                    <img src="{{ review.poster.url }}" alt="{{ review.title }} poster" class="poster">
+                {% endif %}
+                </br>
+                <a>{{ review.title }}</a> 
+                <div id-="listinfo_wrap">
+                    <div class="listinfo">개봉년도: {{ review.release_year }}</div>
+                    <div class="listinfo">장르: {{review.genre}}</div>
+                    <div class="listinfo">별점: {{review.rating}} / 10</div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
