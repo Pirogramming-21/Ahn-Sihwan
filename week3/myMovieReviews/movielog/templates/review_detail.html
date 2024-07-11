@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ review.title }}</title>
+    <style>
+        .poster {
+            width: 200px; /* 포스터 이미지 크기 조절 */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ review.title }}</h1>
+    {% if review.poster %}
+        <img src="{{ review.poster.url }}" alt="{{ review.title }} poster" class="poster">
+    {% endif %}
+    <p>감독: {{ review.director }}</p>
+    <p>주연: {{ review.main_actor }}</p>
+    <p>개봉년도: {{ review.release_year }}</p>
+    <p>장르: {{ review.genre }}</p>
+    <p>별점: {{ review.rating }} / 10</p>
+    <p>러닝타임: {{ review.running_time }} 분</p>
+    <p>리뷰 내용:</p>
+    <p>{{ review.review_content }}</p>
+
+    <a href="/review">리뷰 목록으로 돌아가기</a>
+</body>
+</html>

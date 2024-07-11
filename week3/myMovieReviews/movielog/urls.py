@@ -5,4 +5,5 @@ app_name='movielog'
 
 urlpatterns = [
     path('review/', review_list),
+    path('review/<int:pk>/', review_detail),
 ]

@@ -12,8 +12,8 @@
                 {% if review.poster %}
                     <img src="{{ review.poster.url }}" alt="{{ review.title }} poster" class="poster">
                 {% endif %}
-                </br>
-                <a>{{ review.title }}</a> 
+            </br>
+                <a href="{{review.id}}">{{ review.title }}</a> 
                 <div id-="listinfo_wrap">
                     <div class="listinfo">개봉년도: {{ review.release_year }}</div>
                     <div class="listinfo">장르: {{review.genre}}</div>
