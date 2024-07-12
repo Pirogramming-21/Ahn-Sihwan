@@ -1,20 +1,28 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>시환의 영화 리뷰</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/review.css' %}">
 </head>
 <body>
-    <h1>My Movie Reviews</h1>
-    <a>리뷰 작성하기(버튼)</a>
-    <ul>
+    <div class="page-header">
+        <h1>My Movie Reviews</h1>
+        <a href="/review/create/">리뷰 작성하기(버튼)</a>
+    </div>
+    
+    <ul class="review-container">
         {% for review in reviews %}
-            <li>
+            <li class="review">
                 {% if review.poster %}
-                    <img src="{{ review.poster.url }}" alt="{{ review.title }} poster" class="poster">
+                    <img src="{{ review.poster.url }}" alt="{{ review.title }} poster" class="poster"
+                    style="width:15vw">
                 {% endif %}
             </br>
                 <a href="{{review.id}}">{{ review.title }}</a> 
-                <div id-="listinfo_wrap">
+                <div id-="listinfo-container">
                     <div class="listinfo">개봉년도: {{ review.release_year }}</div>
                     <div class="listinfo">장르: {{review.genre}}</div>
                     <div class="listinfo">별점: {{review.rating}} / 10</div>
