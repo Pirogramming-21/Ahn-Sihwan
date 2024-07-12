@@ -6,13 +6,12 @@
     <title>리뷰 작성하기</title>
 </head>
 <body>
-    <h1>Create Review</h1>
+    <h1>🍿 영화 리뷰</h1>
     <form method="POST" class="review-form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
-    <a href="/review/">돌아가기</a>
 </body>
 </html>
 
