@@ -22,7 +22,7 @@ def review_create(request):
         form=ReviewForm(request.POST, request.FILES)
         if form.is_valid():
             review=form.save()
-            return redirect(f'/review/{review.pk}/')
+            return redirect(f'/review/')
     else:
         form=ReviewForm()
     return render(request, 'review_create.html', {'form': form})
@@ -37,3 +37,9 @@ def review_update(request, pk):
     else:
         form=ReviewForm(instance=review)
     return render(request, 'review_create.html', {'form': form})
+
+def review_delete(request, pk):
+    if request.method=="POST":
+        review=Review.objects.get(id=pk)
+        review.delete()
+    return redirect('/review/')

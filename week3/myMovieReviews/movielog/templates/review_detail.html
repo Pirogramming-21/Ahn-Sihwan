@@ -9,7 +9,7 @@
         }
     </style>
 </head>
-<body>
+<br>
     <h1>{{ review.title }}</h1>
     {% if review.poster %}
         <img src="{{ review.poster.url }}" alt="{{ review.title }} 포스터 이미지" class="poster">
@@ -24,6 +24,12 @@
     <p>{{ review.review_content }}</p>
 
     <a href="/review/{{ review.id }}/update/">리뷰 수정하기</a>
+    </br>
+    <form action="/review/{{ review.id }}/delete/" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="삭제하기">
+      </form>
+    </br>
     <a href="/review/">리뷰 목록으로 돌아가기</a>
 </body>
 </html>

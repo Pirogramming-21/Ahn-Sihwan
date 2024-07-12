@@ -8,4 +8,5 @@ urlpatterns = [
     path('review/<int:pk>/', review_detail),
     path('review/create/', review_create),
     path('review/<int:pk>/update/', review_update),
+    path('review/<int:pk>/delete/', review_delete),
 ]
