@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>리뷰 작성하기</title>
-</head>
-<body>
-    <h1>🍿 영화 리뷰</h1>
-    <form method="POST" class="review-form" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}리뷰 작성하기{% endblock %}
+
+{% block content %}
+<h1>🍿 영화 리뷰</h1>
+<form method="POST" class="review-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
 

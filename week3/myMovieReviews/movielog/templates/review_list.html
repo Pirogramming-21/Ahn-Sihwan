@@ -1,34 +1,42 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>시환의 영화 리뷰</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/review.css' %}">
-</head>
-<body>
-    <div class="page-header">
-        <h1>My Movie Reviews</h1>
-        <a href="/review/create/">리뷰 작성하기(버튼)</a>
-    </div>
-    
-    <ul class="review-container">
-        {% for review in reviews %}
-            <li class="review">
+{% extends 'base.html' %}
+
+{% block title %}리뷰 목록{% endblock %}
+
+{% block content %}
+<div class="review-sort">
+    <form method="get" action=".">
+        <label for="sort_by">정렬 기준:</label>
+        <select id="sort_by" name="sort_by">
+            <option value="title" {% if sort_by == 'title' or sort_by == '-title' %}selected{% endif %}>제목</option>
+            <option value="rating" {% if sort_by == 'rating' or sort_by == '-rating' %}selected{% endif %}>별점</option>
+            <option value="running_time" {% if sort_by == 'running_time' or sort_by == '-running_time' %}selected{% endif %}>상영 시간</option>
+        </select>
+        <button type="submit" name="order" value="asc">
+            🔼
+        </button>
+        <button type="submit" name="order" value="desc">
+            🔽
+        </button>
+    </form>
+</div>
+
+<ul class="review-container">
+    {% for review in reviews %}
+        <li class="review">
+            <div id="poster-container">
                 {% if review.poster %}
-                    <img src="{{ review.poster.url }}" alt="{{ review.title }} poster" class="poster"
-                    style="width:15vw">
+                    <img src="{{ review.poster.url }}" alt="{{ review.title }} poster" class="poster">
+                {% else %}
+                    <div class="no-poster">No Poster</div>
                 {% endif %}
-            </br>
-                <a href="{{review.id}}">{{ review.title }}</a> 
-                <div id-="listinfo-container">
-                    <div class="listinfo">개봉년도: {{ review.release_year }}</div>
-                    <div class="listinfo">장르: {{review.genre}}</div>
-                    <div class="listinfo">별점: {{review.rating}} / 10</div>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+            </div>
+            <div id="movieinfo-container">
+                <a href="{{review.id}}" id="movie-title">{{ review.title }}</a> 
+                <div class="movieinfo">개봉년도: {{ review.release_year }}</div>
+                <div class="movieinfo">장르: {{review.genre}}</div>
+                <div class="movieinfo">별점: {{review.rating}} / 10</div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

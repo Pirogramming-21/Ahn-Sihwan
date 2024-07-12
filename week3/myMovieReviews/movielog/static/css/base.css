@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.page-header {
+    margin-top: 20px;
+}
+
+.review-container {
+    list-style-type: none;
+    padding: 0;
+}
+
+.review {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.poster {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.listinfo-container {
+    margin-top: 10px;
+}
+
+.listinfo {
+    margin-bottom: 5px;
+}

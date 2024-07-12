@@ -2,11 +2,16 @@ from django.shortcuts import render, redirect
 from .models import Review
 from .forms import ReviewForm
 
-# Create your views here.
 def review_list(request):
-    reviews=Review.objects.all()
+    sort_by = request.GET.get('sort_by', 'title')  # URL 쿼리 매개변수 'sort_by'를 가져옴. 기본값은 제목
+    order = request.GET.get('order', 'asc') # 정렬 방향 설정. 기본값은 오름차순
+    if order == 'desc':
+        sort_by = f'-{sort_by}' # 내림차순이면 순서 뒤집기
+    reviews=Review.objects.all().order_by(sort_by) # 정렬 기준에 따라 reviews 가져와서 정렬
     context={
-        'reviews':reviews
+        'reviews':reviews,
+        'sort_by':sort_by,
+        'order': order
     }
     return render(request, 'review_list.html', context)
 
@@ -15,6 +20,9 @@ def review_detail(request, pk):
     context={
         "review":review
     }
+    # (챌린지) 리뷰 러닝타임 변환
+    review.running_time_hours = review.running_time // 60 #시간
+    review.running_time_minutes = review.running_time % 60 #분
     return render(request, 'review_detail.html', context)
 
 def review_create(request):
