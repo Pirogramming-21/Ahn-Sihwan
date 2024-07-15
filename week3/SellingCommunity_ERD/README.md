@@ -3,7 +3,7 @@
 ## 🔥 상품에 대한 정보게시판과 판매게시판이 있는 사이트
 
 기본 기능 구현
-[캡처 사진 - 기본](<img width="1401" alt="ERD_1" src="https://github.com/user-attachments/assets/a1191ee4-494a-43f5-8b79-efb2346218e1">)
+[캡처 사진 - 기본](https://github.com/user-attachments/assets/a1191ee4-494a-43f5-8b79-efb2346218e1)
 
 챌린지 기능 구현
 1. '도, 시, 구' 부분이 애매해서 시•도/시•군•구 행정체계 활용함.
@@ -13,6 +13,6 @@
 3. 해시태그 Entity 생성, 커뮤니티게시판과 1대다 관계 설정 / 유저태그 Entity 생성, 유저식별자 FK로 받아와서 커뮤니티게시판과 1대다 관계 설정하여 기능 구현
 4. 팔로우 Entity 생성. 유저에게서 1대다 관계로 FK 받아와서 팔로워식별자, 팔로우식별자 생성하여 구현.
 
-[캡처 사진 - 챌린지 완료](<img width="1401" alt="ERD_1" src="https://github.com/user-attachments/assets/a1191ee4-494a-43f5-8b79-efb2346218e1">)
+[캡처 사진 - 챌린지 완료](https://github.com/user-attachments/assets/a1191ee4-494a-43f5-8b79-efb2346218e1)
 
 [ERD cloud 링크](https://www.erdcloud.com/d/p38CRiW5Qpu8Rcmbr)
