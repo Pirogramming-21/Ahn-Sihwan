@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{%block title%}개발툴 수정{%endblock%}
+
+{%block content%}
+<h1>개발툴 수정하기</h1>
+  <form enctype="multipart/form-data" action="{% url 'devtools:update' pk %}"    method="post">
+    {%csrf_token%} 
+    {{form.as_p}}
+    <button class="btn btn-success">수정 완료</button>
+  </form>
+{%endblock%}

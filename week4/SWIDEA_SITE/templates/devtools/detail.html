@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %}{{ devtool.name }}{% endblock %}
+
+{% block content %}
+  <h1 style="color: green; font-size: 40px">{{devtool.title}}</h1>
+  <p>이름: {{devtool.name}}</p>
+  <p>종류: {{devtool.kind}}</p>
+  <p>설명: {{devtool.content}}</p>
+
+  <a href="{% url 'devtools:update' devtool.pk %}">수정하기</a>
+  </br>
+  <form action="{% url 'devtools:delete' devtool.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="삭제하기">
+  </form>
+{% endblock content %}
