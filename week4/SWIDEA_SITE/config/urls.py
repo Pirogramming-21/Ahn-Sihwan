@@ -16,13 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from django.conf import settings
-# from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
+from apps.ideas.views import main
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('ideasite.urls')),
+    path('', main, name='main'), # 기본 페이지 apps.ideas 에서 받아오기
+    path('ideas/', include('apps.ideas.urls')),
+    path('devtools/', include('apps.devtools.urls')),
 ]
 
-# if settings.DEBUG:
-#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
