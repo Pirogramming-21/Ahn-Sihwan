@@ -2,9 +2,21 @@
 {% load static %}
 
 {%block head%}
-<title>리스트</title>
+<title>아이디어 리스트</title>
 {%endblock%}
 
 {%block content%}
 <h2>리스트!!</h2>
+<div class="content-wrapper">
+    <!-- 사용자 목록 -->
+    {% for idea in ideas %}
+    <div class="idea">
+      <a>
+        <button type="button" class="btn btn-outline-secondary">
+          <span>{{ idea.title }}</span>
+          <span>{{ idea.content }}</span>
+        </button>
+      </a>
+    </div>
+    {% endfor %}
 {%endblock%}
