@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{%block title%}아이디어 수정{%endblock%}
+
+{%block content%}
+<h1>아이디어 수정하기</h1>
+  <form enctype="multipart/form-data" action="{% url 'ideas:update' pk %}"    method="post">
+    {%csrf_token%} 
+    {{form.as_p}}
+    <button class="btn btn-success">수정 완료</button>
+  </form>
+{%endblock%}

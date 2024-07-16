@@ -11,9 +11,10 @@
     <!-- 사용자 목록 -->
     {% for idea in ideas %}
     <div class="idea">
-      <a>
+      <a href="{% url 'ideas:detail' idea.id %}" class="btn btn-outline-secondary">
         <button type="button" class="btn btn-outline-secondary">
           <span>{{ idea.title }}</span>
+          </br>
           <span>{{ idea.content }}</span>
         </button>
       </a>

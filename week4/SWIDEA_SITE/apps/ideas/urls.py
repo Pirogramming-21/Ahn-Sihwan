@@ -6,7 +6,7 @@ app_name = 'ideas'
 urlpatterns = [
     path('', main, name='main'),
     path('register/', register, name='register'),
-    # path('detail/<int:pk>/', detail, name='detail'),
-    # path('delete/<int:pk>/', delete, name='delete'),
-    # path('update/<int:pk>/', update, name='update'),
+    path('<int:pk>/', detail, name='detail'),
+    path('<int:pk>/delete/', delete, name='delete'),
+    path('<int:pk>/update/', update, name='update'),
 ]

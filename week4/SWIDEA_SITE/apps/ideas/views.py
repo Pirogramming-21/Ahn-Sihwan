@@ -16,3 +16,24 @@ def register(req):
     if form.is_valid():
         form.save()
     return redirect('ideas:main')
+
+def detail(req,pk):
+    idea = Idea.objects.get(id=pk)
+    ctx = {'idea': idea}
+    return render(req, 'ideas/detail.html', ctx)
+
+def delete(req,pk):
+    if req.method == 'POST':
+        Idea.objects.get(id=pk).delete()
+    return redirect('ideas:main')
+
+def update(req, pk):
+    idea = Idea.objects.get(id=pk)
+    if req.method == 'GET':
+        form = IdeaForm(instance=idea)
+        ctx = {'form': form, 'pk': pk}
+        return render(req, 'ideas/update.html', ctx)
+    form = IdeaForm(req.POST, req.FILES, instance=idea)
+    if form.is_valid():
+        form.save()
+    return redirect('ideas:main')
