@@ -6,12 +6,12 @@
 {%endblock%}
 
 {%block content%}
-<h2>리스트!!</h2>
 <div class="content-wrapper">
-    <!-- 사용자 목록 -->
+  <h1 class="page_title">Idea List</h1>
+  <p class="page_info">나의 아이디어를 잊지 말고 기록해보세요</p>
+  <div class="ideas">
     {% for idea in ideas %}
     <div class="idea">
-      
       <div id="thumbnail">
         <img src="{{ idea.image.url }}" alt="{{ idea.title }}">
       </div>
@@ -23,7 +23,8 @@
         {{ idea.interest}}
         <button>+</button>
       </p>
-
     </div>
     {% endfor %}
+  </div>
+    
 {%endblock%}
