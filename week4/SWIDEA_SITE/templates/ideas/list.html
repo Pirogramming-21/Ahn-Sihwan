@@ -23,7 +23,7 @@
     </form>
   </div>
   <div class="ideas">
-    {% for idea in ideas %}
+    {% for idea in page_obj %}
     <div class="idea">
       <div id="thumbnail">
         {% if idea.image %}
@@ -43,12 +43,31 @@
       <p>예상 개발 툴: {{ idea.devtool }}</p>
       <p>
         아이디어 관심도: 
-        <button>-</button>
-        {{ idea.interest}}
-        <button>+</button>
+        <button class="interest_button">-</button>
+          <span id="interest-{{ idea.id }}">{{ idea.interest }}</span>
+        <button class="interest_button">+</button>
       </p>
     </div>
     {% endfor %}
+  </div>
+  <div class="pagination">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+              <strong>{{ num }}</strong>
+          {% else %}
+              <a href="?page={{ num }}">{{ num }}</a>
+          {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+      {% endif %}
+    </span>
   </div>
 
 {%endblock%}

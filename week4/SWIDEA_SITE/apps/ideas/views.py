@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from .models import Idea
 from .forms import IdeaForm
 
@@ -8,10 +9,14 @@ def main(req):
     if order == 'desc':
         sort_by = f'-{sort_by}' # 내림차순이면 순서 뒤집기
     ideas = Idea.objects.all().order_by(sort_by)
+    paginator = Paginator(ideas, 4)
+    page_number = req.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     ctx = {
         'ideas':ideas,
         'order': order,
         'sort_by': sort_by,
+        'page_obj': page_obj
         }
     return render(req, 'ideas/list.html', ctx)
 
