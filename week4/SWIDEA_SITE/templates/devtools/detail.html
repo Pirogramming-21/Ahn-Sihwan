@@ -4,15 +4,39 @@
 {% block title %}{{ devtool.name }}{% endblock %}
 
 {% block content %}
-  <h1 style="color: green; font-size: 40px">{{devtool.title}}</h1>
-  <p>이름: {{devtool.name}}</p>
-  <p>종류: {{devtool.kind}}</p>
-  <p>설명: {{devtool.content}}</p>
+<div class="content-wrapper">
+  <h1>Devtool Detail</h1>
+  <p>개발툴 세부내용 페이지입니다.</p>
+  <div class="detail_contents devtool_contents">
+    <div class="detail_text">
+      <p id="idea_title">{{devtool.name}}</p>
+      <p>종류: {{devtool.kind}}</p>
+      <p>설명: {{devtool.content}}</p>
+    </div>
+    <hr>
 
-  <a href="{% url 'devtools:update' devtool.pk %}">수정하기</a>
-  </br>
-  <form action="{% url 'devtools:delete' devtool.pk %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="삭제하기">
-  </form>
+    <div class="related_items">
+      <p>만들 수 있는 SW 목록</p>
+      <div class="buildable_ideas">
+        {% for idea in ideas %}
+        <a href="{% url 'ideas:detail' idea.pk %}">
+          <div class="idea_text">
+            <p>{{idea.title}}</p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="btns">
+    <a href="{% url 'devtools:main' %}" class="btn list-btn">목록</a>
+    <a href="{% url 'devtools:update' devtool.pk %}" class="btn update-btn">수정하기</a>
+    <form action="{% url 'devtools:delete' devtool.pk %}" method="POST" class="btn delete-btn">
+      {% csrf_token %}
+      <input type="submit" value="삭제하기">
+    </form>
+  </div>
+</div>
 {% endblock content %}

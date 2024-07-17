@@ -26,7 +26,9 @@
       <p id="idea_title">{{idea.title}}</p>
       <p>(1)아이디어 관심도: <br> {{idea.interest}}</p>
       <p>(2)예상 개발툴: </p>
+      {% if idea.devtool %}
       <a href="{% url 'devtools:detail' idea.devtool.id %}">{{idea.devtool}}</a>
+      {% endif %}
       <p>(3) 아이디어 설명: <br> {{idea.content}}</p>
       <p>북마크 여부: {{idea.bookmark}}</p>
     </div>

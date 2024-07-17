@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Devtool
 from .forms import DevtoolForm
+from apps.ideas.models import Idea
 
 def main(req):
     devtools = Devtool.objects.all()
@@ -19,7 +20,8 @@ def register(req):
 
 def detail(req,pk):
     devtool = Devtool.objects.get(id=pk)
-    ctx = {'devtool': devtool}
+    ideas = Idea.objects.filter(devtool=devtool)
+    ctx = {'devtool': devtool, 'ideas': ideas}
     return render(req, 'devtools/detail.html', ctx)
 
 def delete(req,pk):
@@ -36,4 +38,4 @@ def update(req, pk):
     form = DevtoolForm(req.POST, req.FILES, instance=devtool)
     if form.is_valid():
         form.save()
-    return redirect('devtools:main')
+    return redirect('devtools:detail', pk)
