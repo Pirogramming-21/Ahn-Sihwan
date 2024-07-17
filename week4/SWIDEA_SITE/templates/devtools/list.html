@@ -18,6 +18,13 @@
         </div>
         {% endfor %}
     </div>
+    <div class="search-box">
+        <form action="{% url 'devtools:main' %}">
+            <input type="input" name="search_name" placeholder="검색어를 입력하세요" value="{{ search_name }}">
+            <input type="submit" value="검색" />  
+        </form>
+    </div>
 </div>
+
 
 {% endblock %}

@@ -99,3 +99,7 @@ div#thumbnail > img {
 .devtool-content {
     flex: 3;
 }
+
+.search-box {
+    margin-top: 20px;
+}

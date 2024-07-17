@@ -5,7 +5,12 @@ from apps.ideas.models import Idea
 
 def main(req):
     devtools = Devtool.objects.all()
-    ctx = {'devtools':devtools}
+    search_name = req.GET.get('search_name')
+    ctx = {}
+    if(search_name):
+        devtools = devtools.filter(name__contains=search_name)
+        ctx['search_name'] = search_name
+    ctx['devtools'] = devtools
     return render(req, 'devtools/list.html', ctx)
 
 def register(req):

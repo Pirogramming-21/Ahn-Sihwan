@@ -1,0 +1,13 @@
+.form_page{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    background-color: #f5f5f5;
+}
+
+.form_page h1{
+    font-size: 40px;
+    font-weight: bold;
+    margin: 40px;
+}
