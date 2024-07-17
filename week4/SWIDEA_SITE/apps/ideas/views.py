@@ -49,7 +49,7 @@ def update(req, pk):
     form = IdeaForm(req.POST, req.FILES, instance=idea)
     if form.is_valid():
         form.save()
-    return redirect('ideas:main')
+    return redirect('ideas:detail', pk)
 
 def bookmark(req, pk):
     idea = Idea.objects.get(id=pk)

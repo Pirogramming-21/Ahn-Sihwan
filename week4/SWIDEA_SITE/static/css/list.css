@@ -9,6 +9,10 @@
     background-color: lightgray
 }
 
+p {
+    margin: 0;
+}
+
 .ideas{
     display: flex;
     flex-direction: row;
@@ -51,4 +55,8 @@ div#thumbnail > img {
 
 .bookmark-icon{
     filter: invert(1) sepia(1) saturate(10) hue-rotate(330deg);
+}
+
+.idea > a {
+    color: black
 }

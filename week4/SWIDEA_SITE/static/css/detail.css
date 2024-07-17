@@ -1,0 +1,103 @@
+.content-wrapper {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1600px;
+  }
+
+.detail_contents {
+    display: flex;
+    border: 1px solid black;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+.detail_text{
+    width: 40%;
+    margin: 0 20px; 
+}
+
+.detail_image {
+    flex: 1;
+    padding-right: 10px;
+    display:flex;
+}
+
+.detail_image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.detail_text {
+    flex: 1;
+    padding-left: 10px;
+}
+
+.detail_text p {
+    margin: 10px 0;
+}
+
+#bookmark {
+    margin-top: 10px;
+}
+
+.bookmark-icon {
+    width: 20px;
+    height: 20px;
+}
+
+
+#idea_title{
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.btns {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.list-btn {
+    background-color: #ffffff;
+    color: black;
+    border: 1px solid black;
+}
+
+.update-btn {
+    background-color: #007bff;
+}
+
+.delete-btn input {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.delete-btn input:hover {
+    background-color: #c82333;
+    color: gray;
+}
+
+.delete-btn {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}

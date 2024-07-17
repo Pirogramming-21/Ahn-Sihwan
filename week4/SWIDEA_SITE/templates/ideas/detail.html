@@ -4,21 +4,40 @@
 {% block title %}{{ idea.title }}{% endblock %}
 
 {% block content %}
-  <h1 style="color: green; font-size: 40px">{{idea.title}}</h1>
-  {% if idea.image.url != '' %}
-    <img src="{{idea.image.url}}" alt="제품 이미지" />
-  {% else %}
-    <img src="{% static 'images/no_image.png' %}" alt="대체 텍스트" />
-  {% endif %}
-  <p>아이디어명: {{idea.title}}</p>
-  <p>아이디어 설명: {{idea.content}}</p>
-  <p>아이디어 관심도: {{idea.interest}}</p>
-  <p>개발툴</p>
-
-  <a href="{% url 'ideas:update' idea.pk %}">수정하기</a>
-  </br>
-  <form action="{% url 'ideas:delete' idea.pk %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="삭제하기">
-  </form>
+<div class="content-wrapper">
+  <h1>Idea Detail</h1>
+  <p>아이디어 세부내용 페이지입니다.</p>
+  <div class="detail_contents">
+    <div class="detail_image">
+      {% if idea.image.url != '' %}
+      <img src="{{idea.image.url}}" alt="제품 이미지" />
+      {% else %}
+      <img src="{% static 'images/no_image.png' %}" alt="대체 텍스트" />
+      {% endif %}
+      <div id="bookmark">
+        {% if idea.bookmark %}
+        <img src="{% static 'images/star-fill.svg' %}" alt="북마크 표시됨" class="bookmark-icon">
+        {% else %}
+        <img src="{% static 'images/star.svg' %}" alt="북마크 해제됨" class="bookmark-icon">
+        {% endif %}
+      </div>
+    </div>
+    <div class="detail_text">
+      <p id="idea_title">{{idea.title}}</p>
+      <p>(1)아이디어 관심도: <br> {{idea.interest}}</p>
+      <p>(2)예상 개발툴: </p>
+      <a href="{% url 'devtools:detail' idea.devtool.id %}">{{idea.devtool}}</a>
+      <p>(3) 아이디어 설명: <br> {{idea.content}}</p>
+      <p>북마크 여부: {{idea.bookmark}}</p>
+    </div>
+  </div>
+  <div class="btns">
+    <a href="{% url 'ideas:main' %}" class="btn list-btn">목록</a>
+    <a href="{% url 'ideas:update' idea.pk %}" class="btn update-btn">수정하기</a>
+    <form action="{% url 'ideas:delete' idea.pk %}" method="POST" class="btn delete-btn">
+      {% csrf_token %}
+      <input type="submit" value="삭제하기">
+    </form>
+  </div>
+</div>
 {% endblock content %}
