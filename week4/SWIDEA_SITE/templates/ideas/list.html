@@ -9,14 +9,38 @@
 <div class="content-wrapper">
   <h1 class="page_title">Idea List</h1>
   <p class="page_info">나의 아이디어를 잊지 말고 기록해보세요</p>
+  <div class="sort_menu">
+    <form method="get" action=".">
+      <label for="sort_by">정렬 기준:</label>
+      <select id="sort_by" name="sort_by">
+          <option value="title" {% if sort_by == 'title' or sort_by == '-title' %}selected{% endif %}>제목</option>
+          <option value="interest" {% if sort_by == 'interest' or sort_by == '-interest' %}selected{% endif %}>관심도</option>
+          <option value="devtool" {% if sort_by == 'devtool' or sort_by == '-devtool' %}selected{% endif %}>개발툴</option>
+          <option value="bookmark" {% if sort_by == 'bookmark' or sort_by == '-bookmark' %}selected{% endif %}>찜 여부</option>
+      </select>
+      <button type="submit" name="order" value="asc"> 🔼 </button>
+      <button type="submit" name="order" value="desc"> 🔽 </button>
+    </form>
+  </div>
   <div class="ideas">
     {% for idea in ideas %}
     <div class="idea">
       <div id="thumbnail">
+        {% if idea.image %}
         <img src="{{ idea.image.url }}" alt="{{ idea.title }}">
+        {% else %}
+        <img src="{% static 'images/no_image.png' %}" alt="{{ idea.title }}">
+        {% endif %}
+        <div id="bookmark">
+          {% if idea.bookmark %}
+          <img src="{% static 'images/star-fill.svg' %}" alt="북마크 표시됨" class="bookmark-icon">
+          {% else %}
+          <img src="{% static 'images/star.svg' %}" alt="북마크 해제됨" class="bookmark-icon">
+          {% endif %}
+        </div>
       </div>
       <a href="{% url 'ideas:detail' idea.id %}" class="btn btn-outline-secondary">{{ idea.title }}</a>
-      <p>예상 개발 툴:</p>
+      <p>예상 개발 툴: {{ idea.devtool }}</p>
       <p>
         아이디어 관심도: 
         <button>-</button>
@@ -26,5 +50,5 @@
     </div>
     {% endfor %}
   </div>
-    
+
 {%endblock%}

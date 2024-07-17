@@ -3,8 +3,16 @@ from .models import Idea
 from .forms import IdeaForm
 
 def main(req):
-    ideas = Idea.objects.all()
-    ctx = {'ideas':ideas}
+    sort_by = req.GET.get('sort_by', 'title')  # URL 쿼리 매개변수 'sort_by'를 가져옴. 기본값은 제목
+    order = req.GET.get('order', 'asc')
+    if order == 'desc':
+        sort_by = f'-{sort_by}' # 내림차순이면 순서 뒤집기
+    ideas = Idea.objects.all().order_by(sort_by)
+    ctx = {
+        'ideas':ideas,
+        'order': order,
+        'sort_by': sort_by,
+        }
     return render(req, 'ideas/list.html', ctx)
 
 def register(req):
@@ -36,4 +44,10 @@ def update(req, pk):
     form = IdeaForm(req.POST, req.FILES, instance=idea)
     if form.is_valid():
         form.save()
+    return redirect('ideas:main')
+
+def bookmark(req, pk):
+    idea = Idea.objects.get(id=pk)
+    idea.bookmark = not idea.bookmark
+    idea.save()
     return redirect('ideas:main')

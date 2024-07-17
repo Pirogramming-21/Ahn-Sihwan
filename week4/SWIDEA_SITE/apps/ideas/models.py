@@ -7,4 +7,8 @@ class Idea(models.Model):
     content = models.CharField('아이디어 설명', max_length=500)
     interest = models.IntegerField('아이디어 관심도', default=0)
     # 개발툴 - FK 활용
-    # devtool = models.ForeignKey(Devtool, on_delete=models.SET_NULL, verbose_name='개발툴', null=True) # 개발툴 사라져도 SET_NULL지정을 통해 null로 바꿈
+    devtool = models.ForeignKey(Devtool, on_delete=models.SET_NULL, verbose_name='개발툴', null=True) # 개발툴 사라져도 SET_NULL지정을 통해 null로 바꿈
+    bookmark = models.BooleanField('북마크', default=False)
+    
+    def __str__(self):
+        return self.title

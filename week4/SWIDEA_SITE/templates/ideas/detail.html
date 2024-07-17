@@ -8,7 +8,7 @@
   {% if idea.image.url != '' %}
     <img src="{{idea.image.url}}" alt="제품 이미지" />
   {% else %}
-    <img src="{% static 'ideas/image/no_img.png' %}" alt="대체 텍스트" />
+    <img src="{% static 'images/no_image.png' %}" alt="대체 텍스트" />
   {% endif %}
   <p>아이디어명: {{idea.title}}</p>
   <p>아이디어 설명: {{idea.content}}</p>
