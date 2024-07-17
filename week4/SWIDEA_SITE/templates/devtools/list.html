@@ -8,7 +8,6 @@
 {%block content%}
 <h2>리스트!!</h2>
 <div class="content-wrapper">
-    <!-- 사용자 목록 -->
     {% for devtool in devtools %}
     <div class="devtool">
       <a href="{% url 'devtools:detail' devtool.id %}" class="btn btn-outline-secondary">

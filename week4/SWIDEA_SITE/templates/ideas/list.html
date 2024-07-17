@@ -11,13 +11,19 @@
     <!-- 사용자 목록 -->
     {% for idea in ideas %}
     <div class="idea">
-      <a href="{% url 'ideas:detail' idea.id %}" class="btn btn-outline-secondary">
-        <button type="button" class="btn btn-outline-secondary">
-          <span>{{ idea.title }}</span>
-          </br>
-          <span>{{ idea.content }}</span>
-        </button>
-      </a>
+      
+      <div id="thumbnail">
+        <img src="{{ idea.image.url }}" alt="{{ idea.title }}">
+      </div>
+      <a href="{% url 'ideas:detail' idea.id %}" class="btn btn-outline-secondary">{{ idea.title }}</a>
+      <p>예상 개발 툴:</p>
+      <p>
+        아이디어 관심도: 
+        <button>-</button>
+        {{ idea.interest}}
+        <button>+</button>
+      </p>
+
     </div>
     {% endfor %}
 {%endblock%}
