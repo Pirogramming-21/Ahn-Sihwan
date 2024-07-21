@@ -15,10 +15,12 @@
                     onclick="onClickLike({{ post.id }}, 'like')">Like</button>
             {% endif %}
             <span id="like-count-{{ post.id }}">{{ post.likes.count }}</span>
+            
             <div>
                 <input type="text" id="comment-text-{{ post.id }}" placeholder="Add a comment">
                 <button onclick="addComment({{ post.id }})">Comment</button>
             </div>
+
             <ul id="comments-{{ post.id }}">
                 {% for comment in post.comments.all %}
                     <li id="comment-{{ comment.id }}">{{ comment.user.username }}: {{ comment.text }}
@@ -61,8 +63,62 @@
 
                 document.getElementById(`like-count-${response.id}`).innerText = response.likes;
             }
-        }
-    }
+        };
+    };
+
+    const addComment = (postId) => {
+        const commentText = document.getElementById(`comment-text-${postId}`).value;
+        const requestComment = new XMLHttpRequest();
+        const url = "{% url 'pirostagram:leave_comment' %}";
+        requestComment.open("POST", url, true);
+        requestComment.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        requestComment.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+        requestComment.send(`post_id=${postId}&text=${commentText}`);
+
+        requestComment.onreadystatechange = () => {
+            if (requestComment.readyState == XMLHttpRequest.DONE) {
+                if (requestComment.status < 400) {
+                    const response = JSON.parse(requestComment.responseText);
+                    const commentsList = document.getElementById(`comments-${postId}`);
+                    const newComment = document.createElement('li');
+                    newComment.setAttribute('id', `comment-${response.id}`); 
+                    newComment.innerHTML = `${response.user}: ${response.text} <button onclick="deleteComment(${response.id})">Delete</button>`;
+                    commentsList.appendChild(newComment);
+                    document.getElementById(`comment-text-${postId}`).value = '';
+                }
+            }
+        };
+    };
+
+    const deleteComment = (commentId) => {
+        const requestDelete = new XMLHttpRequest();
+        const url = "{% url 'pirostagram:delete_comment' %}";
+        requestDelete.open("POST", url, true);
+        requestDelete.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        requestDelete.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+        requestDelete.send(`comment_id=${commentId}`);
+
+        requestDelete.onreadystatechange = () => {
+            if (requestDelete.readyState == XMLHttpRequest.DONE) {
+                if (requestDelete.status < 400) {
+                    const response = JSON.parse(requestDelete.responseText);
+                    if (response.status === 'success') {
+                        const commentElement = document.getElementById(`comment-${commentId}`);
+                        if (commentElement) {
+                            commentElement.remove();
+                        } else {
+                            console.error('Comment element not found in DOM');
+                        }
+                    } else {
+                        console.error('Error response received:', response);
+                    }
+                } else {
+                    console.error('Error occurred during request:', requestDelete.status);
+                }
+            }
+        };
+    };
+
 </script>
 
 {% endblock %}

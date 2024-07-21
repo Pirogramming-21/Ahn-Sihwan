@@ -37,4 +37,5 @@ pirostagram 앱 models 정의
         - created_at
     - User모델은 새로 앱 파기
     apps.user
-    
+좋아요 기능 구현: Post의 likes(FK) 필드 활용, 유저에 따라 게시물 좋아요 버튼 toggle 되는 식으로 구현함
+댓글 기능 구현: 댓글도 Ajax 활용하도록 구현.

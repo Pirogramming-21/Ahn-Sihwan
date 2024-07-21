@@ -12,24 +12,6 @@ def posts(request):
   }
   return render(request, 'pirostagram/list.html', ctx)
 
-
-# @csrf_exempt #csrf 토근 검사 해제
-# def like_post(request):
-#   req = json.loads(request.body)
-#   post_id = req['id']
-#   button_type = req['type']
-
-#   post = Post.objects.get(id=post_id)
-
-#   if button_type == 'like':
-#     post.likes += 1
-#   else:
-#     post.likes -= 1
-
-#   post.save()
-
-#   return JsonResponse({'id': post_id, 'type': button_type})
-
 @login_required
 def like_post(request):
   post_id = request.POST.get('id')
@@ -45,3 +27,22 @@ def like_post(request):
           post.likes.remove(request.user)
 
   return JsonResponse({'id': post.id, 'type': button_type, 'likes': post.likes.count()})
+
+@login_required
+def leave_comment(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        text = request.POST.get('text')
+        post = Post.objects.get(id=post_id)
+        comment = Comment.objects.create(post=post, user=request.user, text=text)
+        return JsonResponse({'id': comment.id, 'user': comment.user.username, 'text': comment.text})
+
+@login_required
+def delete_comment(request):
+    comment_id = request.POST.get('comment_id')
+    comment = Comment.objects.get(id=comment_id)
+    if comment.user == request.user:
+        comment.delete()
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error'}, status=403)
