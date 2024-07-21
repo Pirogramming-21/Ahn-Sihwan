@@ -13,3 +13,11 @@
 4. 유저 검색기능 추가( 게시글 유저 ) ( 유저모델 생성해야함 )
 5. 정렬기능
 6. 대댓글
+
+---
+## 작업 순서
+django-admin startproject config .
+django-admin startapp pirostagram
+    앱은 하나만 있어도 충분할 것 같았음.
+settings 에서 installed apps, static, templates 정의
+pirostagram 앱 models 정의
