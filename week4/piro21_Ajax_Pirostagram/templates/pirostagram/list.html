@@ -2,21 +2,28 @@
 
 {% block content %}
 <div class="container">
-    <header>
-        <a class="logo"href="{% url 'pirostagram:posts' %}">Pirostagram</a>
-    </header>
     <main>
         {% for post in posts %}
             <article class="post post-id-{{ post.id }}">
                 <header class="post__header">
                     <div class="post__user-info">
-                        <img src="{{ post.user.profile_picture.url }}" alt="{{ post.user.username }}" class="post__user-avatar">
+                        <img src="https://i.pinimg.com/originals/a0/4d/84/a04d849cf591c2f980548b982f461401.jpg" alt="{{ post.user.username }}" class="post__user-avatar">
                         <span class="post__username">{{ post.user.username }}</span>
                     </div>
                     <button class="post__more-options">•••</button>
                 </header>
                 <div class="post__image-container">
-                    <img src="{{ post.image.url }}" alt="Post image" class="post__image">
+                    <div class=" post__images" id="post-images-{{ post.id }}" ondblclick="onDoubleClickLike({{ post.id }})">
+                        {% if post.images.all %}
+                            <div class="image-slider">
+                                {% for image in post.images.all %}
+                                    <img src="{{ image.image.url }}" alt="Post image" class="post__image slide" style="display: none;">
+                                {% endfor %}
+                                <div class="prev image_slide_btn image_slide_prev"></div>
+                                <div class="next image_slide_btn image_slide_next"></div>
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="post__content">
                     <div class="post__actions">
@@ -64,7 +71,7 @@
                 </div>
                 <div class="post__add-comment">
                     <input type="text" id="comment-text-{{ post.id }}" placeholder="Add a comment..." class="comment-input">
-                    <button onclick="addComment({{ post.id }})" class="comment-button">Post</button>
+                    <button onclick="addComment({{ post.id }})" class="comment-button">작성</button>
                 </div>
             </article>
         {% endfor %}
@@ -105,6 +112,11 @@
             }
         };
     };
+
+    const onDoubleClickLike = (postId) => {
+        const likeButton = document.querySelector(`.post-id-${postId} .post__like`);
+        onClickLike(postId, 'like');
+    }
 
     const addComment = (postId) => {
         const commentText = document.getElementById(`comment-text-${postId}`).value;
@@ -161,6 +173,34 @@
             }
         };
     };
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const sliders = document.querySelectorAll('.image-slider');
+    
+    sliders.forEach(slider => {
+        const slides = slider.querySelectorAll('.slide');
+        const prevButton = slider.querySelector('.prev');
+        const nextButton = slider.querySelector('.next');
+        let currentSlide = 0;
+
+        function showSlide(n) {
+            slides[currentSlide].style.display = 'none';
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].style.display = 'block';
+            updateButtons();
+        }
+
+        function updateButtons() {
+            prevButton.style.display = currentSlide === 0 ? 'none' : 'block';
+            nextButton.style.display = currentSlide === slides.length - 1 ? 'none' : 'block';
+        }
+
+        prevButton.addEventListener('click', () => showSlide(currentSlide - 1));
+        nextButton.addEventListener('click', () => showSlide(currentSlide + 1));
+
+        showSlide(0);  // 초기 슬라이드 표시
+    });
+});
 
 </script>
 
