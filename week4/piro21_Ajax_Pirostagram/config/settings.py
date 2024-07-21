@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.pirostagram',
+    'apps.user',
 ]
 
 MIDDLEWARE = [
@@ -137,4 +138,4 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# AUTH_USER_MODEL = 'customuser.CustomUser'
+AUTH_USER_MODEL = 'user.CustomUser'

@@ -18,10 +18,22 @@
 ## 작업 순서
 django-admin startproject config .
 django-admin startapp pirostagram
-    앱은 하나만 있어도 충분할 것 같았음.
+    앱은 하나만 있어도 충분할 것 같았음. -> 일단 확장성 좋게 수정
 settings 에서 installed apps, static, templates 정의
     => 기본세팅 commit
 pirostagram 앱 models 정의
+    필요한 기능: 게시글 좋아요, 댓글, 댓글삭제, (챌린지: 게시글 검색 - 기준이 뭐지?, 유저 검색, 정렬, 대댓글, 사진 여러장 넘어가게)
     1. post
-    2. user
-    3. comment
+        - post id (PK)
+        - user (FK)
+        - image
+        - likes
+        - created_at
+    2. comment
+        - text
+        - user (FK)
+        - post id (FK)
+        - created_at
+    - User모델은 새로 앱 파야할듯?
+    apps.user
+    
