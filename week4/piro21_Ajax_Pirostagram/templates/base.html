@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Document</title>
 </head>
-<body>     
-    <h1>HI!</h1>
+<body>
+    <h1>PIROSTAGRAM!</h1>
     <div class="container">
         {% block content %}
         {% endblock %}
     </div>
+
+    {% block extra %}
+    {% endblock %}
 </body>
 </html>

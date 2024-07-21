@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>post list</h3>
+    {% for post in posts %}
+        <div class="post__container post-id-{{ post.id }}">
+            <img src="{{ post.image.url }}" alt="Post image" class="post-image">
+            <p>{{ post.text }}</p>
+            {% if user.is_authenticated %}
+                <button class="btn btn-primary post__dislike" 
+                    style="display: {% if user in post.likes.all %}inline-block{% else %}none{% endif %}"
+                    onclick="onClickLike({{ post.id }}, 'dislike')">Dislike</button>
+                <button class="btn btn-primary post__like" 
+                    style="display: {% if user not in post.likes.all %}inline-block{% else %}none{% endif %}" 
+                    onclick="onClickLike({{ post.id }}, 'like')">Like</button>
+            {% endif %}
+            <span id="like-count-{{ post.id }}">{{ post.likes.count }}</span>
+            <div>
+                <input type="text" id="comment-text-{{ post.id }}" placeholder="Add a comment">
+                <button onclick="addComment({{ post.id }})">Comment</button>
+            </div>
+            <ul id="comments-{{ post.id }}">
+                {% for comment in post.comments.all %}
+                    <li id="comment-{{ comment.id }}">{{ comment.user.username }}: {{ comment.text }}
+                        <button onclick="deleteComment({{ comment.id }})">Delete</button>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block extra %}
+<script>
+    const requestLike = new XMLHttpRequest();
+
+    const onClickLike = (id, type) => {
+        const url = "{% url 'pirostagram:like_post' %}";
+        requestLike.open("POST", url, true);
+        requestLike.setRequestHeader("Content-Type", "application/x-www-form-urlencoded",);
+        requestLike.setRequestHeader("X-CSRFToken", '{{ csrf_token }}');
+        requestLike.send(`id=${id}&type=${type}`);
+    }
+
+    requestLike.onreadystatechange = () => {
+        if (requestLike.readyState == XMLHttpRequest.DONE) {
+            if (requestLike.status < 400) {
+                const response = JSON.parse(requestLike.responseText);
+                const postContainer = document.querySelector(`.post-id-${response.id}`);
+
+                const likeButton = postContainer.querySelector('.post__like');
+                const dislikeButton = postContainer.querySelector('.post__dislike');
+                
+            if (response.type === 'like') {
+                if (likeButton) likeButton.style.display = 'none';
+                if (dislikeButton) dislikeButton.style.display = 'inline-block';
+            } else if (response.type === 'dislike') {
+                if (likeButton) likeButton.style.display = 'inline-block';
+                if (dislikeButton) dislikeButton.style.display = 'none';
+            }
+
+                document.getElementById(`like-count-${response.id}`).innerText = response.likes;
+            }
+        }
+    }
+</script>
+
+{% endblock %}

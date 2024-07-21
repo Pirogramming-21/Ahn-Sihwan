@@ -27,6 +27,7 @@ pirostagram 앱 models 정의
         - post id (PK)
         - user (FK)
         - image
+        - text
         - likes
         - created_at
     2. comment
@@ -34,6 +35,6 @@ pirostagram 앱 models 정의
         - user (FK)
         - post id (FK)
         - created_at
-    - User모델은 새로 앱 파야할듯?
+    - User모델은 새로 앱 파기
     apps.user
     

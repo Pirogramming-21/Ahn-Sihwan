@@ -12,3 +12,7 @@ h1{
     padding: 10px;
     margin-bottom: 20px;
 }
+
+.post-image {
+    width: 150px;
+}
