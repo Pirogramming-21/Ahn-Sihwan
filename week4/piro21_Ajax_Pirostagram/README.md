@@ -20,4 +20,8 @@ django-admin startproject config .
 django-admin startapp pirostagram
     앱은 하나만 있어도 충분할 것 같았음.
 settings 에서 installed apps, static, templates 정의
+    => 기본세팅 commit
 pirostagram 앱 models 정의
+    1. post
+    2. user
+    3. comment
