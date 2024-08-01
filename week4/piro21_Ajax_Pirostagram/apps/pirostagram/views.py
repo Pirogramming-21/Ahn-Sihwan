@@ -14,6 +14,9 @@ def posts(request):
   }
   return render(request, 'pirostagram/list.html', ctx)
 
+def login(request):
+  return render(request, 'user/login.html')
+
 @login_required
 def new_post(request):
     if request.method == 'POST':

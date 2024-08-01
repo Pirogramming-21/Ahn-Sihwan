@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.pirostagram.urls', namespace='pirostagram')),
-    path('users/', include('apps.user.urls')),
+    path('users/', include('apps.user.urls', namespace='user')),
 ]
 
 if settings.DEBUG:
